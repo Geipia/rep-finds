@@ -33,7 +33,7 @@ function renderItems(items) {
     col.className = 'col';
     col.innerHTML = `
       <div class="card h-100 bg-dark border-secondary text-white shadow-sm">
-        <img src="${item.image_url}" class="card-img-top" alt="${item.title}">
+        <img src="${item.image_url}" class="card-img-top" alt="${item.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Pas+d%27image'">
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between align-items-start mb-2">
             <span class="badge bg-primary">${item.brand || 'Marque'}</span>
@@ -71,12 +71,10 @@ function filterItems() {
   renderItems(filtered);
 }
 
-// Event Listeners
 document.getElementById('searchInput').addEventListener('input', filterItems);
 document.getElementById('filterCategory').addEventListener('change', filterItems);
 document.getElementById('filterBrand').addEventListener('change', filterItems);
 document.getElementById('filterAgent').addEventListener('change', filterItems);
 document.getElementById('filterShipping').addEventListener('change', filterItems);
 
-// Chargement initial
 document.addEventListener('DOMContentLoaded', fetchItems);

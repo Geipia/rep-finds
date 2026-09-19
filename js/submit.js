@@ -25,13 +25,11 @@ document.getElementById('addItemForm').addEventListener('submit', async function
   if (error) {
     alert('Erreur lors de l\'ajout : ' + error.message);
   } else {
-    // Reinitialiser et fermer le modal
     document.getElementById('addItemForm').reset();
     const modalEl = document.getElementById('addItemModal');
     const modal = bootstrap.Modal.getInstance(modalEl);
     modal.hide();
 
-    // Recharger la liste
     fetchItems();
   }
 });
