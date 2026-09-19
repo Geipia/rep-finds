@@ -26,9 +26,16 @@ function renderItems(items) {
   }
   noResults.classList.add('d-none');
 
+  const shippingBadges = {
+    'Bas': 'Port: 0-15€',
+    'Moyen': 'Port: 15-35€',
+    'Élevé': 'Port: >35€'
+  };
+
   items.forEach(item => {
     const shippingClass = item.shipping_cost ? `badge-shipping-${item.shipping_cost.toLowerCase()}` : 'bg-secondary';
-    
+    const shippingText = shippingBadges[item.shipping_cost] || `Port: ${item.shipping_cost || 'N/A'}`;
+
     const col = document.createElement('div');
     col.className = 'col';
     col.innerHTML = `
@@ -37,7 +44,7 @@ function renderItems(items) {
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between align-items-start mb-2">
             <span class="badge bg-primary">${item.brand || 'Marque'}</span>
-            <span class="badge ${shippingClass}">Port: ${item.shipping_cost || 'N/A'}</span>
+            <span class="badge ${shippingClass}">${shippingText}</span>
           </div>
           <h5 class="card-title text-truncate fw-bold mb-1">${item.title}</h5>
           <p class="card-text text-secondary small mb-3">${item.category || ''} • <i class="bi bi-shop"></i> ${item.agent_provider || ''}</p>

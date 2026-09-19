@@ -82,9 +82,9 @@
       <div class="col-6 col-md-3">
         <select id="filterShipping" class="form-select bg-dark border-secondary text-white">
           <option value="">Tous frais de port</option>
-          <option value="Bas">Bas</option>
-          <option value="Moyen">Moyen</option>
-          <option value="Élevé">Élevé</option>
+          <option value="Bas">Bas (0€ - 15€)</option>
+          <option value="Moyen">Moyen (15€ - 35€)</option>
+          <option value="Élevé">Élevé (> 35€)</option>
         </select>
       </div>
     </div>
@@ -156,12 +156,12 @@
                 </select>
               </div>
               <div class="col-6">
-                <label for="itemShipping" class="form-label">Coût de livraison *</label>
+                <label for="itemShipping" class="form-label">Frais de port *</label>
                 <select class="form-select bg-dark border-secondary text-white" id="itemShipping" required>
                   <option value="">Choisir...</option>
-                  <option value="Bas">Bas (€)</option>
-                  <option value="Moyen">Moyen (€€)</option>
-                  <option value="Élevé">Élevé (€€€)</option>
+                  <option value="Bas">Bas (0€ - 15€)</option>
+                  <option value="Moyen">Moyen (15€ - 35€)</option>
+                  <option value="Élevé">Élevé (> 35€)</option>
                 </select>
               </div>
             </div>
@@ -170,8 +170,8 @@
               <input type="url" class="form-control bg-dark border-secondary text-white" id="itemUrl" required placeholder="https://...">
             </div>
             <div class="mb-3">
-              <label for="imageUrl" class="form-label">Lien de l'image *</label>
-              <input type="url" class="form-control bg-dark border-secondary text-white" id="imageUrl" required placeholder="https://...">
+              <label for="itemImage" class="form-label">Photo du produit (PNG/JPEG) *</label>
+              <input type="file" class="form-control bg-dark border-secondary text-white" id="itemImage" accept="image/png, image/jpeg, image/jpg, image/webp" required>
             </div>
           </div>
           <div class="modal-footer border-secondary">
