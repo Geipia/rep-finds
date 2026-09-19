@@ -13,11 +13,9 @@ document.getElementById('addItemForm').addEventListener('submit', async function
   submitBtn.textContent = 'Envoi de l\'image...';
 
   try {
-    // 1. Génération d'un nom de fichier unique
     const fileExt = imageFile.name.split('.').pop();
     const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
 
-    // 2. Upload de la photo dans Supabase Storage
     const { error: uploadError } = await _supabase.storage
       .from('item-images')
       .upload(fileName, imageFile);
@@ -26,18 +24,17 @@ document.getElementById('addItemForm').addEventListener('submit', async function
       throw new Error("Erreur téléversement image : " + uploadError.message);
     }
 
-    // 3. Récupération de l'URL publique de l'image
     const { data: publicUrlData } = _supabase.storage
       .from('item-images')
       .getPublicUrl(fileName);
 
     const imageUrl = publicUrlData.publicUrl;
 
-    // 4. Enregistrement de l'article dans la base
     submitBtn.textContent = 'Publication en cours...';
 
     const newItem = {
       title: document.getElementById('itemTitle').value,
+      price: parseFloat(document.getElementById('itemPrice').value) || 0,
       brand: document.getElementById('itemBrand').value,
       category: document.getElementById('itemCategory').value,
       agent_provider: document.getElementById('itemAgent').value,
@@ -54,7 +51,6 @@ document.getElementById('addItemForm').addEventListener('submit', async function
       throw new Error("Erreur base de données : " + insertError.message);
     }
 
-    // Réinitialisation et fermeture
     document.getElementById('addItemForm').reset();
     const modalEl = document.getElementById('addItemModal');
     const modal = bootstrap.Modal.getInstance(modalEl);

@@ -35,6 +35,7 @@ function renderItems(items) {
   items.forEach(item => {
     const shippingClass = item.shipping_cost ? `badge-shipping-${item.shipping_cost.toLowerCase()}` : 'bg-secondary';
     const shippingText = shippingBadges[item.shipping_cost] || `Port: ${item.shipping_cost || 'N/A'}`;
+    const priceDisplay = item.price ? `${item.price} €` : 'N/C';
 
     const col = document.createElement('div');
     col.className = 'col';
@@ -47,6 +48,7 @@ function renderItems(items) {
             <span class="badge ${shippingClass}">${shippingText}</span>
           </div>
           <h5 class="card-title text-truncate fw-bold mb-1">${item.title}</h5>
+          <div class="fw-bold text-success fs-5 mb-2">${priceDisplay}</div>
           <p class="card-text text-secondary small mb-3">${item.category || ''} • <i class="bi bi-shop"></i> ${item.agent_provider || ''}</p>
           <a href="${item.item_url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light mt-auto w-100">
             Voir le produit <i class="bi bi-box-arrow-up-right ms-1"></i>
